@@ -1,6 +1,7 @@
 package com.bridgelabz.demo;
 
 import com.bridgelabz.demo.component.DemoBean;
+import com.bridgelabz.demo.component.EmployeeBean;
 import com.bridgelabz.demo.controller.HelloRestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,13 @@ public class HelloWorldApplication {
         logger.warn("warning");
         System.out.println("Hello From Bridgelabz");
         ApplicationContext context = SpringApplication.run(HelloWorldApplication.class, args);
-        DemoBean demoBean = context.getBean(DemoBean.class);
-        logger.debug("Demo Bean = " + demoBean.toString());
-        System.out.println(context.getBean(HelloRestController.class));
+        logger.debug("Checking Context:{}", context.getBean(DemoBean.class));
+        logger.debug("\n*** Example using @Autowire annotation on property***");
+        EmployeeBean employeeBean = context.getBean(EmployeeBean.class);
+        employeeBean.seteId(101);
+        employeeBean.seteName("Prashanth");
+        employeeBean.showEmployeeDetails();
+
     }
 
 }
